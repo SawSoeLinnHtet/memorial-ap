@@ -1,0 +1,3091 @@
+{
+  "info": {
+    "_postman_id": "9a99a7a7-61b0-4c9f-bc14-5fc314a8fcd6",
+    "name": "Memorial App API",
+    "description": "Postman collection exported from the Laravel API routes in this project. All current API routes are protected by the `X-API-KEY` header. Examples were refreshed after the full API test suite passed.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "MEMORIAL-APP_ixZwVmxANvvq8LIQBwHzTNZHg5jimdwxa39sTE0YQfeKF7fP9l77YwUOVtIVI2l8",
+      "type": "string"
+    },
+    {
+      "key": "feature_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "trashed_feature_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "missing_feature_id",
+      "value": "999",
+      "type": "string"
+    },
+    {
+      "key": "collection_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "trashed_collection_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "missing_collection_id",
+      "value": "999",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Features",
+      "item": [
+        {
+          "name": "List Features",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features"
+              ]
+            },
+            "description": "Returns all non-deleted features ordered by newest first."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features"
+                  ]
+                },
+                "description": "Returns all non-deleted features ordered by newest first."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Features fetched successfully\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n      \"memorial_text\": \"In loving memory of Daw Mya, whose kindness lives on in every family story.\",\n      \"memorial_date\": \"2026-04-19\",\n      \"created_at\": \"19-04-2026 06:45\",\n      \"updated_at\": \"19-04-2026 06:45\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features"
+                  ]
+                },
+                "description": "Returns all non-deleted features ordered by newest first."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Feature",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features"
+              ]
+            },
+            "description": "Creates a feature. `image` must be a JPG, JPEG, or PNG file up to 2 MB.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "memorial_text",
+                  "value": "In loving memory of Daw Mya, whose kindness lives on in every family story.",
+                  "type": "text"
+                },
+                {
+                  "key": "memorial_date",
+                  "value": "2026-04-19",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features"
+                  ]
+                },
+                "description": "Creates a feature. `image` must be a JPG, JPEG, or PNG file up to 2 MB.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "memorial_text",
+                      "value": "In loving memory of Daw Mya, whose kindness lives on in every family story.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Feature created successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n    \"memorial_text\": \"In loving memory of Daw Mya, whose kindness lives on in every family story.\",\n    \"memorial_date\": \"2026-04-19\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 06:45\"\n  }\n}"
+            },
+            {
+              "name": "422 Validation Failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features"
+                  ]
+                },
+                "description": "Creates a feature. `image` must be a JPG, JPEG, or PNG file up to 2 MB.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "memorial_text",
+                      "value": "In loving memory of Daw Mya, whose kindness lives on in every family story.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Validation failed\",\n  \"errors\": {\n    \"memorial_text\": [\n      \"The memorial text field is required.\"\n    ],\n    \"memorial_date\": [\n      \"The memorial date field is required.\"\n    ],\n    \"image\": [\n      \"The image field is required.\"\n    ]\n  }\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features"
+                  ]
+                },
+                "description": "Creates a feature. `image` must be a JPG, JPEG, or PNG file up to 2 MB.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "memorial_text",
+                      "value": "In loving memory of Daw Mya, whose kindness lives on in every family story.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            },
+            {
+              "name": "400 Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features"
+                  ]
+                },
+                "description": "Creates a feature. `image` must be a JPG, JPEG, or PNG file up to 2 MB.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "memorial_text",
+                      "value": "In loving memory of Daw Mya, whose kindness lives on in every family story.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Show Feature",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features/{{feature_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features",
+                "{{feature_id}}"
+              ]
+            },
+            "description": "Returns one non-deleted feature by ID using route model binding."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Returns one non-deleted feature by ID using route model binding."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Feature fetched successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n    \"memorial_text\": \"In loving memory of Daw Mya, whose kindness lives on in every family story.\",\n    \"memorial_date\": \"2026-04-19\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 06:45\"\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Returns one non-deleted feature by ID using route model binding."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Feature] 999\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Returns one non-deleted feature by ID using route model binding."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Feature",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features/{{feature_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features",
+                "{{feature_id}}"
+              ]
+            },
+            "description": "Updates a feature by ID using route model binding. Send one or more fields: `memorial_text`, `memorial_date`, or `image`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memorial_text\": \"Updated memorial text\",\n  \"memorial_date\": \"2026-04-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Updates a feature by ID using route model binding. Send one or more fields: `memorial_text`, `memorial_date`, or `image`.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memorial_text\": \"Updated memorial text\",\n  \"memorial_date\": \"2026-04-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Feature updated successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n    \"memorial_text\": \"Updated memorial text\",\n    \"memorial_date\": \"2026-04-20\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 07:15\"\n  }\n}"
+            },
+            {
+              "name": "422 Validation Failed",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Updates a feature by ID using route model binding. Send one or more fields: `memorial_text`, `memorial_date`, or `image`.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memorial_text\": \"Updated memorial text\",\n  \"memorial_date\": \"2026-04-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Validation failed\",\n  \"errors\": {\n    \"memorial_text\": [\n      \"The memorial text field is required.\"\n    ]\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Updates a feature by ID using route model binding. Send one or more fields: `memorial_text`, `memorial_date`, or `image`.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memorial_text\": \"Updated memorial text\",\n  \"memorial_date\": \"2026-04-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Feature] 999\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Updates a feature by ID using route model binding. Send one or more fields: `memorial_text`, `memorial_date`, or `image`.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memorial_text\": \"Updated memorial text\",\n  \"memorial_date\": \"2026-04-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            },
+            {
+              "name": "400 Error",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Updates a feature by ID using route model binding. Send one or more fields: `memorial_text`, `memorial_date`, or `image`.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memorial_text\": \"Updated memorial text\",\n  \"memorial_date\": \"2026-04-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Soft Delete Feature",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features/{{feature_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features",
+                "{{feature_id}}"
+              ]
+            },
+            "description": "Soft-deletes a feature by ID using route model binding."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Soft-deletes a feature by ID using route model binding."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Feature deleted successfully\",\n  \"data\": null\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Soft-deletes a feature by ID using route model binding."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Feature] 999\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{feature_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{feature_id}}"
+                  ]
+                },
+                "description": "Soft-deletes a feature by ID using route model binding."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Trashed Features",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features/trashed",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features",
+                "trashed"
+              ]
+            },
+            "description": "Returns soft-deleted features ordered by newest first."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/trashed",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "trashed"
+                  ]
+                },
+                "description": "Returns soft-deleted features ordered by newest first."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Trashed features fetched successfully\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n      \"memorial_text\": \"In loving memory of Daw Mya, whose kindness lives on in every family story.\",\n      \"memorial_date\": \"2026-04-19\",\n      \"created_at\": \"19-04-2026 06:45\",\n      \"updated_at\": \"19-04-2026 06:45\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/trashed",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "trashed"
+                  ]
+                },
+                "description": "Returns soft-deleted features ordered by newest first."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Restore Feature",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/restore",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features",
+                "{{trashed_feature_id}}",
+                "restore"
+              ]
+            },
+            "description": "Restores a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Feature restored successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n    \"memorial_text\": \"In loving memory of Daw Mya, whose kindness lives on in every family story.\",\n    \"memorial_date\": \"2026-04-19\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 06:45\"\n  }\n}"
+            },
+            {
+              "name": "404 Missing Feature",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Feature] 999\"\n}"
+            },
+            {
+              "name": "404 Feature Is Not Trashed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Not Found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Permanently Delete Feature",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/permanent",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "features",
+                "{{trashed_feature_id}}",
+                "permanent"
+              ]
+            },
+            "description": "Permanently deletes a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Feature deleted permanently\",\n  \"data\": null\n}"
+            },
+            {
+              "name": "404 Missing Feature",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Feature] 999\"\n}"
+            },
+            {
+              "name": "404 Feature Is Not Trashed",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Not Found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/features/{{trashed_feature_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "features",
+                    "{{trashed_feature_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted feature. Returns 404 if the feature is missing or is not trashed."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Collections",
+      "item": [
+        {
+          "name": "List Collections",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/collections",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "collections"
+              ]
+            },
+            "description": "Returns all non-deleted collections with their features ordered by newest first."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections"
+                  ]
+                },
+                "description": "Returns all non-deleted collections with their features ordered by newest first."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Collections fetched successfully\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"Family Memorial\",\n      \"description\": \"A shared memorial collection\",\n      \"memorial_date\": \"2026-04-19\",\n      \"created_at\": \"19-04-2026 06:45\",\n      \"updated_at\": \"19-04-2026 06:45\",\n      \"features\": [\n        {\n          \"id\": 1,\n          \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n          \"memorial_text\": \"A shared memorial collection\",\n          \"memorial_date\": \"2026-04-19\",\n          \"created_at\": \"19-04-2026 06:45\",\n          \"updated_at\": \"19-04-2026 06:45\"\n        }\n      ]\n    }\n  ]\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections"
+                  ]
+                },
+                "description": "Returns all non-deleted collections with their features ordered by newest first."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Collection",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/collections",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "collections"
+              ]
+            },
+            "description": "Creates a collection and creates one feature for each uploaded image. Use `images[]` for one or more JPG, JPEG, or PNG files up to 2 MB each.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Family Memorial",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "A shared memorial collection",
+                  "type": "text"
+                },
+                {
+                  "key": "memorial_date",
+                  "value": "2026-04-19",
+                  "type": "text"
+                },
+                {
+                  "key": "images[]",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections"
+                  ]
+                },
+                "description": "Creates a collection and creates one feature for each uploaded image. Use `images[]` for one or more JPG, JPEG, or PNG files up to 2 MB each.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Collection created successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"Family Memorial\",\n    \"description\": \"A shared memorial collection\",\n    \"memorial_date\": \"2026-04-19\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 06:45\",\n    \"features\": [\n      {\n        \"id\": 1,\n        \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n        \"memorial_text\": \"A shared memorial collection\",\n        \"memorial_date\": \"2026-04-19\",\n        \"created_at\": \"19-04-2026 06:45\",\n        \"updated_at\": \"19-04-2026 06:45\"\n      },\n      {\n        \"id\": 2,\n        \"image_url\": \"http://localhost:8000/storage/uploads/second.png\",\n        \"memorial_text\": \"A shared memorial collection\",\n        \"memorial_date\": \"2026-04-19\",\n        \"created_at\": \"19-04-2026 06:45\",\n        \"updated_at\": \"19-04-2026 06:45\"\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "422 Validation Failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections"
+                  ]
+                },
+                "description": "Creates a collection and creates one feature for each uploaded image. Use `images[]` for one or more JPG, JPEG, or PNG files up to 2 MB each.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Validation failed\",\n  \"errors\": {\n    \"name\": [\n      \"The name field is required.\"\n    ],\n    \"description\": [\n      \"The description field is required.\"\n    ],\n    \"memorial_date\": [\n      \"The memorial date field is required.\"\n    ],\n    \"images\": [\n      \"The images field is required.\"\n    ]\n  }\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections"
+                  ]
+                },
+                "description": "Creates a collection and creates one feature for each uploaded image. Use `images[]` for one or more JPG, JPEG, or PNG files up to 2 MB each.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            },
+            {
+              "name": "500 Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections"
+                  ]
+                },
+                "description": "Creates a collection and creates one feature for each uploaded image. Use `images[]` for one or more JPG, JPEG, or PNG files up to 2 MB each.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Something went wrong\",\n  \"errors\": {\n    \"error\": \"Unexpected server error message\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Show Collection",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/collections/{{collection_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "collections",
+                "{{collection_id}}"
+              ]
+            },
+            "description": "Returns one non-deleted collection by ID using route model binding."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Returns one non-deleted collection by ID using route model binding."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Collection fetched successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"Family Memorial\",\n    \"description\": \"A shared memorial collection\",\n    \"memorial_date\": \"2026-04-19\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 06:45\",\n    \"features\": [\n      {\n        \"id\": 1,\n        \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n        \"memorial_text\": \"A shared memorial collection\",\n        \"memorial_date\": \"2026-04-19\",\n        \"created_at\": \"19-04-2026 06:45\",\n        \"updated_at\": \"19-04-2026 06:45\"\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Returns one non-deleted collection by ID using route model binding."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Collection] 999\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Returns one non-deleted collection by ID using route model binding."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Collection",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/collections/{{collection_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "collections",
+                "{{collection_id}}"
+              ]
+            },
+            "description": "Updates a collection and replaces its feature-image associations. This request uses Laravel method spoofing (`_method=PUT`) so multipart file uploads work reliably from Postman.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "_method",
+                  "value": "PUT",
+                  "type": "text"
+                },
+                {
+                  "key": "name",
+                  "value": "Family Memorial",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "A shared memorial collection",
+                  "type": "text"
+                },
+                {
+                  "key": "memorial_date",
+                  "value": "2026-04-19",
+                  "type": "text"
+                },
+                {
+                  "key": "images[]",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Updates a collection and replaces its feature-image associations. This request uses Laravel method spoofing (`_method=PUT`) so multipart file uploads work reliably from Postman.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "_method",
+                      "value": "PUT",
+                      "type": "text"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Collection updated successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"Family Memorial\",\n    \"description\": \"A shared memorial collection\",\n    \"memorial_date\": \"2026-04-19\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 07:15\",\n    \"features\": [\n      {\n        \"id\": 1,\n        \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n        \"memorial_text\": \"A shared memorial collection\",\n        \"memorial_date\": \"2026-04-19\",\n        \"created_at\": \"19-04-2026 06:45\",\n        \"updated_at\": \"19-04-2026 06:45\"\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "422 Validation Failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Updates a collection and replaces its feature-image associations. This request uses Laravel method spoofing (`_method=PUT`) so multipart file uploads work reliably from Postman.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "_method",
+                      "value": "PUT",
+                      "type": "text"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Validation failed\",\n  \"errors\": {\n    \"name\": [\n      \"The name field is required.\"\n    ],\n    \"description\": [\n      \"The description field is required.\"\n    ],\n    \"memorial_date\": [\n      \"The memorial date field is required.\"\n    ],\n    \"images\": [\n      \"The images field is required.\"\n    ]\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Updates a collection and replaces its feature-image associations. This request uses Laravel method spoofing (`_method=PUT`) so multipart file uploads work reliably from Postman.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "_method",
+                      "value": "PUT",
+                      "type": "text"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Collection] 999\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Updates a collection and replaces its feature-image associations. This request uses Laravel method spoofing (`_method=PUT`) so multipart file uploads work reliably from Postman.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "_method",
+                      "value": "PUT",
+                      "type": "text"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            },
+            {
+              "name": "500 Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Updates a collection and replaces its feature-image associations. This request uses Laravel method spoofing (`_method=PUT`) so multipart file uploads work reliably from Postman.",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "_method",
+                      "value": "PUT",
+                      "type": "text"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Family Memorial",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A shared memorial collection",
+                      "type": "text"
+                    },
+                    {
+                      "key": "memorial_date",
+                      "value": "2026-04-19",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images[]",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Something went wrong\",\n  \"errors\": {\n    \"error\": \"Unexpected server error message\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Soft Delete Collection",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/collections/{{collection_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "collections",
+                "{{collection_id}}"
+              ]
+            },
+            "description": "Soft-deletes a collection by ID using route model binding."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Soft-deletes a collection by ID using route model binding."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Collection deleted successfully\",\n  \"data\": null\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Soft-deletes a collection by ID using route model binding."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Collection] 999\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Soft-deletes a collection by ID using route model binding."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            },
+            {
+              "name": "500 Error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{collection_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{collection_id}}"
+                  ]
+                },
+                "description": "Soft-deletes a collection by ID using route model binding."
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Something went wrong\",\n  \"errors\": {\n    \"error\": \"Unexpected server error message\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Restore Collection",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/restore",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "collections",
+                "{{trashed_collection_id}}",
+                "restore"
+              ]
+            },
+            "description": "Restores a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Collection restored successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"Family Memorial\",\n    \"description\": \"A shared memorial collection\",\n    \"memorial_date\": \"2026-04-19\",\n    \"created_at\": \"19-04-2026 06:45\",\n    \"updated_at\": \"19-04-2026 06:45\",\n    \"features\": [\n      {\n        \"id\": 1,\n        \"image_url\": \"http://localhost:8000/storage/uploads/example.jpg\",\n        \"memorial_text\": \"A shared memorial collection\",\n        \"memorial_date\": \"2026-04-19\",\n        \"created_at\": \"19-04-2026 06:45\",\n        \"updated_at\": \"19-04-2026 06:45\"\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "404 Missing Collection",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Collection] 999\"\n}"
+            },
+            {
+              "name": "404 Collection Is Not Trashed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Not Found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            },
+            {
+              "name": "500 Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/restore",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "restore"
+                  ]
+                },
+                "description": "Restores a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Something went wrong\",\n  \"errors\": {\n    \"error\": \"Unexpected server error message\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Permanently Delete Collection",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/permanent",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "collections",
+                "{{trashed_collection_id}}",
+                "permanent"
+              ]
+            },
+            "description": "Permanently deletes a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+          },
+          "response": [
+            {
+              "name": "200 Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Collection deleted permanently\",\n  \"data\": null\n}"
+            },
+            {
+              "name": "404 Missing Collection",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Collection] 999\"\n}"
+            },
+            {
+              "name": "404 Collection Is Not Trashed",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Not Found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}"
+            },
+            {
+              "name": "500 Error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-API-KEY",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/collections/{{trashed_collection_id}}/permanent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "collections",
+                    "{{trashed_collection_id}}",
+                    "permanent"
+                  ]
+                },
+                "description": "Permanently deletes a soft-deleted collection. Returns 404 if the collection is missing or is not trashed."
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Something went wrong\",\n  \"errors\": {\n    \"error\": \"Unexpected server error message\"\n  }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
