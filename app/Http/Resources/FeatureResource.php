@@ -12,7 +12,7 @@ class FeatureResource extends JsonResource
         return [
             'id' => $this->id,
             'image_url' => $this->image_url
-                ? $request->getSchemeAndHttpHost().'/storage/'.ltrim($this->image_url, '/')
+                ? route('storage.public', ['path' => ltrim($this->image_url, '/')])
                 : null,
             'memorial_text' => $this->memorial_text,
             'memorial_date' => $this->memorial_date,
