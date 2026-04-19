@@ -237,4 +237,14 @@ class CollectionController extends Controller
             );
         }
     }
+
+    public function trashed()
+    {
+        $collections = Collection::onlyTrashed()->latest()->get();
+
+        return $this->successResponse(
+            CollectionResource::collection($collections),
+            'Trashed collections fetched successfully'
+        );
+    }
 }
