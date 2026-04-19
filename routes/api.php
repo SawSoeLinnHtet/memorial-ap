@@ -18,9 +18,9 @@ Route::middleware('api.key')->group(function () {
 
     Route::group(['prefix' => 'collections'], function () {
         Route::get('/', [CollectionController::class, 'index']);
+        Route::get('/trashed', [CollectionController::class, 'trashed']);
         Route::get('/{collection}', [CollectionController::class, 'show']);
         Route::post('/', [CollectionController::class, 'store']);
-        Route::get('/trashed', [CollectionController::class, 'trashed']);
         Route::put('/{collection}', [CollectionController::class, 'update']);
         Route::delete('/{collection}', [CollectionController::class, 'softDelete']);
         Route::post('/{collection}/restore', [CollectionController::class, 'restore'])->withTrashed();
