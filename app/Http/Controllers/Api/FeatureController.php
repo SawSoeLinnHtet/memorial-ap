@@ -15,7 +15,10 @@ class FeatureController extends Controller
     
     public function index()
     {
-        $features = Feature::withoutTrashed()->latest()->get();
+        $features = Feature::withoutTrashed()
+            ->whereDoesntHave('collections')
+            ->latest()
+            ->get();
 
         return $this->successResponse(
             FeatureResource::collection($features), 
