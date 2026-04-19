@@ -32,7 +32,7 @@ class FeatureController extends Controller
             $validator = Validator::make($request->all(), [
                 'memorial_text' => 'required|string',
                 'memorial_date' => 'required|date',
-                'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+                'image' => 'required|image|mimes:jpg,jpeg,png',
             ]);
 
             if ($validator->fails()) {
@@ -77,7 +77,7 @@ class FeatureController extends Controller
             $validator = Validator::make($request->all(), [
                 'memorial_text' => 'sometimes|required|string',
                 'memorial_date' => 'sometimes|required|date',
-                'image' => 'sometimes|required|image|mimes:jpg,jpeg,png|max:2048',
+                'image' => 'sometimes|required|image|mimes:jpg,jpeg,png',
             ]);
 
             if ($validator->fails()) {

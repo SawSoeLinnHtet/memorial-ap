@@ -33,7 +33,7 @@ class CollectionController extends Controller
                 'description' => 'required|string',
                 'memorial_date' => 'required|date',
                 'images' => 'required|array|min:1',
-                'images.*' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+                'images.*' => 'required|image|mimes:jpg,jpeg,png',
             ]);
 
             if ($validator->fails()) {
@@ -107,7 +107,7 @@ class CollectionController extends Controller
                 'description' => 'required|string',
                 'memorial_date' => 'required|date',
                 'images' => 'required|array|min:1',
-                'images.*' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+                'images.*' => 'required|image|mimes:jpg,jpeg,png',
             ]);
 
             if ($validator->fails()) {
